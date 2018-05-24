@@ -1,0 +1,25 @@
+{
+  "name": "empapp",
+  "version": "1.0.0",
+  "description": "WebProgramming - MEAN Stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Venan24/employeeMng.git"
+  },
+  "author": "Venan24",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Venan24/employeeMng/issues"
+  },
+  "homepage": "https://github.com/Venan24/employeeMng#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.2"
+  }
+}
