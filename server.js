@@ -1,22 +1,22 @@
+// ======================= \\
+//        Packages         \\
+// ======================= \\
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/employeeMng');
+var config = require('./config');
 
-var Employee = mongoose.model('Employee', mongoose.Schema({
-  name:String,
-	dept:String,
-	area:String,
-	status:String,
-	contact:String,
-	salary:String
-}));
+mongoose.connect(config.database); // Get configurations
+var Employee = require('./app/models/employee'); // Mongoose employee model
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended:false})); // body-parser => we can get info from POST/URL parameters
 app.use(bodyParser.json());
-//app.use(express.static(__dirname + '/client'));
+//app.use(express.static(__dirname + '/client')); // client nije zavrsen jos
 
+// ======================= \\
+//         Routes          \\
+// ======================= \\
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
@@ -45,6 +45,9 @@ app.post('/restic/employees', function(req, res){
 	});
 });
 
+// ======================= \\
+//      Start Server       \\
+// ======================= \\
 var listener = app.listen(3000, function(){
   console.log("Server je pokrenut na: " + listener.address().port + " portu");
 })
