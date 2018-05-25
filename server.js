@@ -27,7 +27,23 @@ app.get('/restic/employees', function(req, res){
       res.send(err);
     res.json(employees);
   })
-})
+});
+
+app.get('/restic/employees/:id', function(req, res){
+	Employee.findOne({_id:req.params.id}, function(err, employee){
+		if(err)
+			res.send(err);
+		res.json(employee);
+	});
+});
+
+app.post('/restic/employees', function(req, res){
+	Employee.create( req.body, function(err, employees){
+		if(err)
+			res.send(err);
+		res.json(employees);
+	});
+});
 
 var listener = app.listen(3000, function(){
   console.log("Server je pokrenut na: " + listener.address().port + " portu");
