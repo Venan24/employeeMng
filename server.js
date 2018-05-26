@@ -79,7 +79,7 @@ app.post('/restic/login', function(req, res){
 		bcrypt.compare(enteredPassword, users.password, function(err, resp) {
 			if(resp===true){
 				console.log("PASSWORD MATCH!!!");
-				res.send("PASSWORD MATCH")
+				res.json({username: users.username, firstname: users.firstname, lastname: users.lastname, _id: users.id});
 			}else{
 				console.log("WRONG PASSWORD!!!");
 				res.send("WRONG PW")
