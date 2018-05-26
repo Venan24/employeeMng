@@ -1,11 +1,12 @@
 // ======================= \\
 //        Packages         \\
 // ======================= \\
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
-var mongoose = require('mongoose');
-var config = require('./config'); // Get configurations
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const mongoose = require('mongoose');
+const config = require('./config'); // Get configurations
+const bcrypt = require('bcrypt');
 
 mongoose.connect(config.database); // Connect to db
 
@@ -47,6 +48,23 @@ app.post('/restic/employees', function(req, res){
 		if(err)
 			res.send(err);
 		res.json(employees);
+	});
+});
+
+//Create new user
+app.post('/restic/users', function(req, res){
+	var username = req.body.username;
+	var firstname = req.body.firstname;
+	var lastname = req.body.lastname;
+	var admin = false;
+	
+	bcrypt.hash(req.body.password, 10, function(err, hash) {
+		var user = new User({username: username, password: hash, firstname: firstname, lastname: lastname, admin: admin});
+		User.create(user, function(err, users){
+			if(err)
+				res.send(err);
+			res.json(users);
+		});
 	});
 });
 
