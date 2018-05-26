@@ -1,13 +1,17 @@
-// instance
+//Require Mongoose
 var mongoose = require('mongoose');
+
+//Define a schema
 var Schema = mongoose.Schema;
 
-// mongoose model, pass it using module.exports
-module.exports = mongoose.model('Employee', new Schema({ 
+var EmployeeModelSchema = new Schema({
     name:String,
 	dept:String,
 	area:String,
 	status:String,
 	contact:String,
-	salary:String
-}));
+	salary:String,
+});
+
+//Export function to create "Employee" model class
+module.exports = mongoose.model('Employee', EmployeeModelSchema );

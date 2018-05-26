@@ -9,6 +9,7 @@ var config = require('./config');
 
 mongoose.connect(config.database); // Get configurations
 var Employee = require('./app/models/employee'); // Mongoose employee model
+var User = require('./app/models/user');
 
 app.use(bodyParser.urlencoded({extended:false})); // body-parser => we can get info from POST/URL parameters
 app.use(bodyParser.json());
@@ -43,6 +44,15 @@ app.post('/restic/employees', function(req, res){
 			res.send(err);
 		res.json(employees);
 	});
+});
+
+//Get all users Just4TEsting
+app.get('/restic/users', function(req, res){
+  User.find(function(err, users){
+    if(err)
+      res.send(err);
+    res.json(users);
+  })
 });
 
 // ======================= \\
