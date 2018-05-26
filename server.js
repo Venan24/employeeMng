@@ -5,11 +5,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
-var config = require('./config');
+var config = require('./config'); // Get configurations
 
-mongoose.connect(config.database); // Get configurations
-var Employee = require('./app/models/employee'); // Mongoose employee model
-var User = require('./app/models/user');
+mongoose.connect(config.database); // Connect to db
+
+var Employee = require('./app/models/employee'); // Mongoose employees model
+var User = require('./app/models/user'); // Mongoose users model
 
 app.use(bodyParser.urlencoded({extended:false})); // body-parser => we can get info from POST/URL parameters
 app.use(bodyParser.json());
@@ -22,6 +23,7 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+//Get all employees
 app.get('/restic/employees', function(req, res){
   Employee.find(function(err, employees){
     if(err)
@@ -30,6 +32,7 @@ app.get('/restic/employees', function(req, res){
   })
 });
 
+//Get employee by id
 app.get('/restic/employees/:id', function(req, res){
 	Employee.findOne({_id:req.params.id}, function(err, employee){
 		if(err)
@@ -38,6 +41,7 @@ app.get('/restic/employees/:id', function(req, res){
 	});
 });
 
+//Create new employee
 app.post('/restic/employees', function(req, res){
 	Employee.create( req.body, function(err, employees){
 		if(err)
