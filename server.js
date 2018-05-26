@@ -68,6 +68,27 @@ app.post('/restic/users', function(req, res){
 	});
 });
 
+//Authentificate login user
+app.post('/restic/login', function(req, res){
+	var username = req.body.username;
+	var enteredPassword = req.body.password;
+
+	User.findOne({username:username}, function(err, users){
+		if(err)
+			res.send("No user found");
+		bcrypt.compare(enteredPassword, users.password, function(err, resp) {
+			if(resp===true){
+				console.log("PASSWORD MATCH!!!");
+				res.send("PASSWORD MATCH")
+			}else{
+				console.log("WRONG PASSWORD!!!");
+				res.send("WRONG PW")
+			}
+		});
+	});
+	
+});
+
 //Get all users Just4TEsting
 app.get('/restic/users', function(req, res){
   User.find(function(err, users){
