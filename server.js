@@ -51,11 +51,12 @@ apiRoutes.post('/authenticate', function(req, res){
 				var token = jwt.sign(payload, app.get('superSecret'), {
 					expiresIn : 60*60*24 //24 hours valid token
 				});
+				res.setHeader("x-access-token", token);
 				res.send({
 					success: true,
           			message: 'Successfully Logged in!',
           			token: token
-        });
+				});
 			}else{
 				res.json({message: "Wrong password"})
 			}

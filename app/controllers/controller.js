@@ -7,7 +7,7 @@ myApp.controller('empController', function($scope,$route,$routeParams,$http){
 	};
     $scope.login = function(credentials){
         $http.post('/api/authenticate', credentials).then(function(response){
-            localStorage.setItem('user',response.data.token)
+			localStorage.setItem('user',response.data.token);
         }),function(error){
             console.log(error);
         }
@@ -16,7 +16,7 @@ myApp.controller('empController', function($scope,$route,$routeParams,$http){
         localStorage.clear();
     };
 	$scope.getEmployees = function(){
-		$http.get('/api/employees/').then(function(response){
+		$http.get('/api/employees/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$scope.employees = response.data;
 		});
 	};
