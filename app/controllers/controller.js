@@ -22,26 +22,26 @@ myApp.controller('empController', function($scope,$route,$routeParams,$http){
 	};
 	$scope.showEmployee = function(){
 		var id = $routeParams.id;
-		$http.get('/api/employees/'+ id).then(function(response){
+		$http.get('/api/employees/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$scope.employee = response.data;
 		});
 	};
 	$scope.addEmployee = function(){
-		$http.post('/api/employees/', $scope.employee).then(function(response){
+		$http.post('/api/employees/', $scope.employee, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			//$scope.employee = response.data;
 			window.location.href = '/';
 		});
 	};
 	$scope.updateEmployee = function(){
 		var id = $routeParams.id;
-		$http.put('/api/employees/'+ id , $scope.employee).then(function(response){
+		$http.put('/api/employees/'+ id , $scope.employee, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			//$scope.employee = response.data;
 			window.location.href = '/';
 		});
 	};
 	$scope.deleteEmployee = function(id){
 		var id = id;
-		$http.delete('/api/employees/'+ id).then(function(response){
+		$http.delete('/api/employees/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$route.reload();
 		});
 	};
