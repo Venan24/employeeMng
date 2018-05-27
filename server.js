@@ -79,7 +79,8 @@ apiRoutes.use(function(req, res, next){
 				return res.json({ success: false, message: 'Failed to authenticate token.' });		
 			}else{
 				// If everything is good, save to request for use in other routes
-				req.decoded = decoded;	
+				req.decoded = decoded;
+				//console.log(decoded);	
 				next();
 			}
 		});
@@ -97,7 +98,7 @@ apiRoutes.use(function(req, res, next){
 //    Authenticated routes    \\
 // ========================== \\
 apiRoutes.get('/', function(req, res){
-	res.json({ message: 'Welcome!' });
+	res.json({ message: 'Welcome!', firstname:req.decoded.firstname });
 });
 
 //Get all employees
