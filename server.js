@@ -17,7 +17,7 @@ app.set('superSecret', config.secret); // secret variable
 
 app.use(bodyParser.urlencoded({extended:false})); // body-parser => we can get info from POST/URL parameters
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/client')); // client nije zavrsen jos
+app.use(express.static(__dirname + '/app')); // client nije zavrsen jos
 
 // ======================= \\
 //         Routes          \\
