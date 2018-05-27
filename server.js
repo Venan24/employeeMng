@@ -17,7 +17,7 @@ app.set('superSecret', config.secret); // secret variable
 
 app.use(bodyParser.urlencoded({extended:false})); // body-parser => we can get info from POST/URL parameters
 app.use(bodyParser.json());
-//app.use(express.static(__dirname + '/client')); // client nije zavrsen jos
+app.use(express.static(__dirname + '/client')); // client nije zavrsen jos
 
 // ======================= \\
 //         Routes          \\
@@ -66,39 +66,39 @@ apiRoutes.post('/authenticate', function(req, res){
 // ========================================================== \\
 //      Route middleware to authenticate and check token      \\
 // ========================================================== \\
-apiRoutes.use(function(req, res, next){
+//apiRoutes.use(function(req, res, next){
 
 	// Check header/URL/POST parameters for token
-	var token = req.body.token || req.params.token || req.headers['x-access-token'];
+//	var token = req.body.token || req.params.token || req.headers['x-access-token'];
 
 	// Decode token
-	if(token){
+//	if(token){
 		// Verifies secret and checks exp
-		jwt.verify(token, app.get('superSecret'), function(err, decoded){			
-			if(err){
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
-			}else{
+//		jwt.verify(token, app.get('superSecret'), function(err, decoded){			
+//			if(err){
+//				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+//			}else{
 				// If everything is good, save to request for use in other routes
-				req.decoded = decoded;
+//				req.decoded = decoded;
 				//console.log(decoded);	
-				next();
-			}
-		});
-	}else{
+//				next();
+//			}
+//		});
+//	}else{
 		// If there is no token
 		// Return an error
-		return res.status(403).send({ 
-			success: false, 
-			message: 'No token provided.'
-		});
-	}
-});
+//		return res.status(403).send({ 
+//			success: false, 
+//			message: 'No token provided.'
+//		});
+//	}
+//});
 
 // ========================== \\
 //    Authenticated routes    \\
 // ========================== \\
 apiRoutes.get('/', function(req, res){
-	res.json({ message: 'Welcome!', firstname:req.decoded.firstname });
+	res.json({ message: 'Welcome!', /*firstname:req.decoded.firstname*/ });
 });
 
 //Get all employees
@@ -122,6 +122,33 @@ apiRoutes.get('/employees/:id', function(req, res){
 //Create new employee
 apiRoutes.post('/employees', function(req, res){
 	Employee.create( req.body, function(err, employees){
+		if(err)
+			res.send(err);
+		res.json(employees);
+	});
+});
+
+//Remove selected employee
+apiRoutes.delete('/employees/:id', function(req, res){
+	Employee.findOneAndRemove({_id:req.params.id}, function(err, employees){
+		if(err)
+			res.send(err);
+		res.json(employees);
+	});
+});
+
+//Update selected employee
+apiRoutes.put('/employees/:id', function(req, res){
+	var query = {
+		name:req.body.name,
+		dept:req.body.dept,
+		area:req.body.area,
+		status:req.body.status,
+		contact:req.body.contact,
+		salary:req.body.salary
+	};
+
+	Employee.findOneAndUpdate({_id:req.params.id}, query, function(err, employees){
 		if(err)
 			res.send(err);
 		res.json(employees);
