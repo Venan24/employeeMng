@@ -42,7 +42,7 @@ apiRoutes.post('/authenticate', function(req, res){
 		bcrypt.compare(enteredPassword, users.password, function(err, resp) {
 			if(resp===true){
 				const payload = {
-					//__id: users.__id
+					//_id: users._id
 					username: users.username,
 					firstname: users.firstname,
 					lastname: users.lastname,
@@ -51,10 +51,10 @@ apiRoutes.post('/authenticate', function(req, res){
 				var token = jwt.sign(payload, app.get('superSecret'), {
 					expiresIn : 60*60*24 //24 hours valid token
 				});
-				res.json({
+				res.send({
 					success: true,
-          message: 'Successfully Logged in!',
-          token: token
+          			message: 'Successfully Logged in!',
+          			token: token
         });
 			}else{
 				res.json({message: "Wrong password"})

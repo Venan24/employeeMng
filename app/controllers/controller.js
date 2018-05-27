@@ -1,4 +1,20 @@
 myApp.controller('empController', function($scope,$route,$routeParams,$http){
+	$scope.check_login = function(){
+        if(localStorage.getItem('user')){
+            return true;
+        }
+        return false;
+	};
+    $scope.login = function(credentials){
+        $http.post('/api/authenticate', credentials).then(function(response){
+            localStorage.setItem('user',response.data.token)
+        }),function(error){
+            console.log(error);
+        }
+    };
+    $scope.logout = function(){
+        localStorage.clear();
+    };
 	$scope.getEmployees = function(){
 		$http.get('/api/employees/').then(function(response){
 			$scope.employees = response.data;
