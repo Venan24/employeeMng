@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-init="showEmployee()">
+<div class="panel panel-default" ng-init="showEmployee(); getDepartments();">
 	<div class="panel-heading">
 	  <p class="panel-title"><span style="color:#5bc0de;" 
 class="glyphicon glyphicon-edit"> </span> Edit Employee</p>
@@ -11,7 +11,10 @@ class="glyphicon glyphicon-edit"> </span> Edit Employee</p>
     </div>
     <div class="form-group">
       <label for="dept">Department:</label>
-      <input type="text" class="form-control" id="dept" ng-model="employee.dept" value="employee.dept">
+      <!--<input type="text" class="form-control" id="dept" ng-model="employee.dept" value="employee.dept">-->
+      <select id="departmentSelector" ng-model="employee.dept">
+        <option ng-repeat="x in departments">{{x.name}}</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="area">Location:</label>

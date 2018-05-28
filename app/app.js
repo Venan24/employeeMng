@@ -15,7 +15,7 @@ myApp.config(function($routeProvider){
 		})
 		.when('/employees/:id/edit', {
 			templateUrl:'templates/edit.html',
-			controller:'empController'
+			controller:'editController'
 		})
 		.when('/employees/:id/show', {
 			templateUrl:'templates/show.html',

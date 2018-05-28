@@ -11,13 +11,14 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // Get configurations
 var Employee = require('./app/models/employee'); // Mongoose employees model
 var User = require('./app/models/user'); // Mongoose users model
+var Departments = require('./app/models/departments'); // Departments model
 
 mongoose.connect(config.database); // Connect to db
 app.set('superSecret', config.secret); // secret variable
 
 app.use(bodyParser.urlencoded({extended:false})); // body-parser => we can get info from POST/URL parameters
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/app')); // client nije zavrsen jos
+app.use(express.static(__dirname + '/app')); // client side
 
 // ======================= \\
 //         Routes          \\
@@ -37,12 +38,14 @@ apiRoutes.post('/authenticate', function(req, res){
 	var enteredPassword = req.body.password;
 
 	User.findOne({username:username}, function(err, users){
-		if(err)
-			res.send("No user found");
+		if(err){
+			res.send("Request error");
+		}
+		if(users){
 		bcrypt.compare(enteredPassword, users.password, function(err, resp) {
 			if(resp===true){
 				const payload = {
-					//_id: users._id
+					//_id: users.id,
 					username: users.username,
 					firstname: users.firstname,
 					lastname: users.lastname,
@@ -61,39 +64,42 @@ apiRoutes.post('/authenticate', function(req, res){
 				res.json({message: "Wrong password"})
 			}
 		});
+		}else{
+			res.json({message: "No User Found"})
+		}
 	});
 });
 
 // ========================================================== \\
 //      Route middleware to authenticate and check token      \\
 // ========================================================== \\
-//apiRoutes.use(function(req, res, next){
+apiRoutes.use(function(req, res, next){
 
-	// Check header/URL/POST parameters for token
-//	var token = req.body.token || req.params.token || req.headers['x-access-token'];
+	//Check header/URL/POST parameters for token
+	var token = req.body.token || req.params.token || req.headers['x-access-token'];
 
-	// Decode token
-//	if(token){
+	//Decode token
+	if(token){
 		// Verifies secret and checks exp
-//		jwt.verify(token, app.get('superSecret'), function(err, decoded){			
-//			if(err){
-//				return res.json({ success: false, message: 'Failed to authenticate token.' });		
-//			}else{
+		jwt.verify(token, app.get('superSecret'), function(err, decoded){			
+			if(err){
+				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+			}else{
 				// If everything is good, save to request for use in other routes
-//				req.decoded = decoded;
+				req.decoded = decoded;
 				//console.log(decoded);	
-//				next();
-//			}
-//		});
-//	}else{
+				next();
+			}
+		});
+	}else{
 		// If there is no token
 		// Return an error
-//		return res.status(403).send({ 
-//			success: false, 
-//			message: 'No token provided.'
-//		});
-//	}
-//});
+		return res.status(403).send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+	}
+});
 
 // ========================== \\
 //    Authenticated routes    \\
@@ -155,6 +161,15 @@ apiRoutes.put('/employees/:id', function(req, res){
 		res.json(employees);
 	});
 });
+
+//Get all departments
+apiRoutes.get('/departments', function(req, res){
+	Departments.find(function(err, departmens){
+	  if(err)
+		res.send(err);
+	  res.json(departmens);
+	})
+  });
 
 //Create new user
 apiRoutes.post('/users', function(req, res){

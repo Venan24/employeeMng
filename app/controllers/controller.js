@@ -20,21 +20,8 @@ myApp.controller('empController', function($scope,$route,$routeParams,$http){
 			$scope.employees = response.data;
 		});
 	};
-	$scope.showEmployee = function(){
-		var id = $routeParams.id;
-		$http.get('/api/employees/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-			$scope.employee = response.data;
-		});
-	};
 	$scope.addEmployee = function(){
 		$http.post('/api/employees/', $scope.employee, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-			//$scope.employee = response.data;
-			window.location.href = '/';
-		});
-	};
-	$scope.updateEmployee = function(){
-		var id = $routeParams.id;
-		$http.put('/api/employees/'+ id , $scope.employee, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			//$scope.employee = response.data;
 			window.location.href = '/';
 		});
