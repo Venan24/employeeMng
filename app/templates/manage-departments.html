@@ -1,0 +1,55 @@
+<div class="row">
+	<div class="col-md-12" ng-init="getDepartments()">
+		<div class="card">
+			<div class="card-header" data-background-color="red">
+				<h4 class="title">Department Management</h4>
+			</div>
+			<div class="card-content table-responsive">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header" data-background-color="blue">
+							<h4 class="title">Add New Department</h4>
+						</div>
+						<div class="card-content">
+							<form>
+								<div class="form-group">
+									<label for="name">Department Name:</label>
+									<input type="text" class="form-control" id="name" ng-model="department.name" required>
+								</div>
+								<a href="#" class="btn btn-info" ng-click="addDepartment()"> Add Department </a>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header" data-background-color="blue">
+							<h4 class="title">Department List</h4>
+						</div>
+						<div class="card-content">
+							<table class="table">
+								<thead class="text-primary">
+									<th>Name</th>
+									<th>Actions</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="department in departments">
+										<td class="text-primary">{{ department.name }}</td>
+										<td>
+											<a href="#!/departments/{{departments._id}}/edit" class="btn btn-success">
+												<span class="glyphicon glyphicon-edit"> </span> Edit </a>
+											<a ng-click="deletedepartments(departments._id)" class="btn btn-danger">
+												<span class="glyphicon glyphicon-trash"> </span> Delete </a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

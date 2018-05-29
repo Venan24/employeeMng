@@ -9,6 +9,7 @@ var bcrypt = require('bcrypt');
 
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // Get configurations
+
 var Employee = require('./app/models/employee'); // Mongoose employees model
 var User = require('./app/models/user'); // Mongoose users model
 var Departments = require('./app/models/departments'); // Departments model
@@ -56,16 +57,21 @@ apiRoutes.post('/authenticate', function(req, res){
 				});
 				res.setHeader("x-access-token", token);
 				res.send({
-					success: true,
+								success: true,
           			message: 'Successfully Logged in!',
           			token: token
 				});
 			}else{
-				res.json({message: "Wrong password"})
+				res.send({
+					success: false,
+					message: "Wrong password"
+				})
 			}
 		});
 		}else{
-			res.json({message: "No User Found"})
+			res.send({
+				user: false
+			})
 		}
 	});
 });
@@ -100,6 +106,7 @@ apiRoutes.use(function(req, res, next){
 		});
 	}
 });
+
 
 // ========================== \\
 //    Authenticated routes    \\
