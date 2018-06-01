@@ -13,6 +13,7 @@ var config = require('./config'); // Get configurations
 var Employee = require('./app/models/employee'); // Mongoose employees model
 var User = require('./app/models/user'); // Mongoose users model
 var Departments = require('./app/models/departments'); // Departments model
+var Positions = require('./app/models/positions'); // Positions model
 
 mongoose.connect(config.database); // Connect to db
 app.set('superSecret', config.secret); // secret variable
@@ -216,6 +217,15 @@ apiRoutes.put('/departments/:id', function(req, res){
 			res.send(err);
 		res.json(departments);
 	});
+});
+
+//Get all positions
+apiRoutes.get('/positions', function(req, res){
+	Positions.find(function(err, positions){
+	  if(err)
+		res.send(err);
+	  res.json(positions);
+	})
 });
 
 //Create new user

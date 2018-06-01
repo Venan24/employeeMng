@@ -38,6 +38,7 @@
 <script src="controllers/edit-controller.js"></script>
 <script src="controllers/add-controller.js"></script>
 <script src="controllers/departments-controller.js"></script>
+<script src="controllers/positions-controller.js"></script>
 
 <script>
     var myApp = angular.module("myApp", ["ngRoute", "xeditable", "ui.bootstrap", "ngAnimate", "toastr"]);
@@ -46,6 +47,7 @@
     myApp.controller('editController', editController);
     myApp.controller('addController', addController);
     myApp.controller('departmentsController', departmentsController);
+    myApp.controller('positionsController', positionsController);
 
     myApp.config(function($routeProvider) {
         $routeProvider
@@ -77,9 +79,13 @@
             templateUrl : "templates/manage-departments.html",
             controller : "departmentsController"
         })
-		.when('/departments/:id/edit', {
+        .when('/departments/:id/edit', {
 			templateUrl:'templates/edit-department.html',
 			controller:"departmentsController"
+        })
+        .when("/positions", {
+            templateUrl : "templates/manage-positions.html",
+            controller : "positionsController"
         });
     });
 </script>
