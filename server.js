@@ -228,6 +228,15 @@ apiRoutes.get('/positions', function(req, res){
 	})
 });
 
+//Create new positions
+apiRoutes.post('/positions', function(req, res){
+	Positions.create( req.body, function(err, positions){
+		if(err)
+			res.send(err);
+		res.json(positions);
+	});
+});
+
 //Create new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;
