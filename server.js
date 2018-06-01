@@ -237,6 +237,15 @@ apiRoutes.post('/positions', function(req, res){
 	});
 });
 
+//Remove selected position
+apiRoutes.delete('/positions/:id', function(req, res){
+	Positions.findOneAndRemove({_id:req.params.id}, function(err, positions){
+		if(err)
+			res.send(err);
+		res.json(positions);
+	});
+});
+
 //Create new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;
