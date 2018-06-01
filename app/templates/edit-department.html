@@ -1,16 +1,19 @@
-<div class="panel panel-default" ng-init="showSelectedDepartment()">
-  <div class="panel-heading">
-    <p class="panel-title">
-      <span style="color:#5bc0de;" class="glyphicon glyphicon-edit"> </span> Edit Department</p>
-  </div>
-  <div class="panel-body">
-    <form>
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" ng-model="department.name" value="department.name">
+<div class="card-content table-responsive" ng-init="showSelectedDepartment()">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header" data-background-color="blue">
+        <h4 class="title">Edit Department</h4>
       </div>
-      <button type="submit" style="color:#5bc0de;" class="btn btn-default" ng-click="updateDepartment()">Update</button>
-      <a href="#!/dashboard" class="btn btn-default"> Cancel</a>
-    </form>
+      <div class="card-content">
+        <form>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" ng-model="department.name" value="department.name">
+          </div>
+          <button type="submit" class="btn btn-success" ng-click="updateDepartment()">Update</button>
+          <a href="#!/dashboard" class="btn btn-danger"> Cancel</a>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
