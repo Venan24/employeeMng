@@ -86,6 +86,10 @@
         .when("/positions", {
             templateUrl : "templates/manage-positions.html",
             controller : "positionsController"
+        })
+        .when('/positions/:id/edit', {
+			templateUrl:'templates/edit-position.html',
+			controller:"positionsController"
         });
     });
 </script>

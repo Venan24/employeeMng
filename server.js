@@ -246,6 +246,28 @@ apiRoutes.delete('/positions/:id', function(req, res){
 	});
 });
 
+//Get position by id
+apiRoutes.get('/positions/:id', function(req, res){
+	Positions.findOne({_id:req.params.id}, function(err, positions){
+		if(err)
+			res.send(err);
+		res.json(positions);
+	});
+});
+
+//Update selected position
+apiRoutes.put('/positions/:id', function(req, res){
+	var query = {
+		name:req.body.name,
+	};
+
+	Positions.findOneAndUpdate({_id:req.params.id}, query, function(err, t){
+		if(err)
+			res.send(err);
+		res.json(t);
+	});
+});
+
 //Create new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;

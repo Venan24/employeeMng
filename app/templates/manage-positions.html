@@ -34,12 +34,12 @@
 									<th>Actions</th>
 								</thead>
 								<tbody>
-									<tr ng-repeat="position in positions">
-										<td class="text-primary">{{ position.name }}</td>
+									<tr ng-repeat="x in positions">
+										<td class="text-primary">{{ x.name }}</td>
 										<td>
-											<a href="#!/departments/{{department._id}}/edit" class="btn btn-success">
+											<a href="#!/positions/{{x._id}}/edit" class="btn btn-success">
 												<span class="glyphicon glyphicon-edit"> </span> Edit </a>
-											<a ng-click="deletePosition(position._id)" class="btn btn-danger">
+											<a ng-click="deletePosition(x._id)" class="btn btn-danger">
 												<span class="glyphicon glyphicon-trash"> </span> Delete </a>
 										</td>
 									</tr>
