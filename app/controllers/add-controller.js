@@ -10,4 +10,10 @@ function addController($scope,$http){
           $scope.departments = response.data;
         });
       }
+
+      $scope.getPositions = function(){
+        $http.get('/api/positions/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+          $scope.positions = response.data;
+        });
+      }
 }

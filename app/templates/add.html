@@ -5,7 +5,7 @@
               <h4 class="title">Add New Employee</h4>
           </div>
           <div class="card-content">
-            <form ng-submit="addEmployee()" ng-init="getDepartments()">
+            <form ng-submit="addEmployee()" ng-init="getDepartments(); getPositions();">
               <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" id="name" ng-model="employee.name" required>
@@ -21,13 +21,16 @@
                 <input type="text" class="form-control" id="area" ng-model="employee.area" required>
               </div>
               <div class="form-group">
-                <label for="contact">Contact No. :</label>
+                <label for="contact">Contact Info:</label>
                 <input type="text" class="form-control" id="contact" ng-model="employee.contact" required>
                 <div class="form-group">
-                <label for="status">Job Status :</label>
-                <input type="text" class="form-control" id="status" ng-model="employee.status">
+                  <label for="dept">Job Status:</label>
+                  <select id="departmentSelector" ng-model="employee.status" required>
+                    <option ng-repeat="x in positions">{{x.name}}</option>
+                  </select>
+                </div>
                 <div class="form-group">
-                <label for="salary">Salary :</label>
+                <label for="salary">Salary:</label>
                 <input type="number" class="form-control" id="salary" ng-model="employee.salary" required>
               </div>
               <button type="submit" class="btn btn-success">Save</button>
