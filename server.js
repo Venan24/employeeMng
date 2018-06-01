@@ -176,7 +176,16 @@ apiRoutes.get('/departments', function(req, res){
 		res.send(err);
 	  res.json(departmens);
 	})
-  });
+});
+
+//Create new department
+apiRoutes.post('/departments', function(req, res){
+	Departments.create( req.body, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
 
 //Create new user
 apiRoutes.post('/users', function(req, res){
