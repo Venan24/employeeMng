@@ -187,6 +187,15 @@ apiRoutes.post('/departments', function(req, res){
 	});
 });
 
+//Remove selected departemt
+apiRoutes.delete('/departments/:id', function(req, res){
+	Departments.findOneAndRemove({_id:req.params.id}, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
+
 //Create new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;

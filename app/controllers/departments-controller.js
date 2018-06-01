@@ -1,4 +1,4 @@
-function departmentsController($scope,$http,$location){
+function departmentsController($scope,$http,$location,$route){
 
 	$scope.getDepartments = function(){
 		$http.get('/api/departments/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
@@ -15,7 +15,7 @@ function departmentsController($scope,$http,$location){
 	$scope.deleteDepartemnt = function(id){
 		var id = id;
 		$http.delete('/api/departments/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-			$location.path('/departments');
+			$route.reload();
 		});
 	}
 }
