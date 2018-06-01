@@ -196,6 +196,28 @@ apiRoutes.delete('/departments/:id', function(req, res){
 	});
 });
 
+//Get Department by id
+apiRoutes.get('/departments/:id', function(req, res){
+	Departments.findOne({_id:req.params.id}, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
+
+//Update selected department
+apiRoutes.put('/departments/:id', function(req, res){
+	var query = {
+		name:req.body.name,
+	};
+
+	Departments.findOneAndUpdate({_id:req.params.id}, query, function(err, departments){
+		if(err)
+			res.send(err);
+		res.json(departments);
+	});
+});
+
 //Create new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;

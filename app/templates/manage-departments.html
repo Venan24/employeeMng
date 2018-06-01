@@ -37,7 +37,7 @@
 									<tr ng-repeat="department in departments">
 										<td class="text-primary">{{ department.name }}</td>
 										<td>
-											<a href="#!/departments{{department._id}}/edit" class="btn btn-success">
+											<a href="#!/departments/{{department._id}}/edit" class="btn btn-success">
 												<span class="glyphicon glyphicon-edit"> </span> Edit </a>
 											<a ng-click="deleteDepartemnt(department._id)" class="btn btn-danger">
 												<span class="glyphicon glyphicon-trash"> </span> Delete </a>

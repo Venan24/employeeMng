@@ -76,6 +76,10 @@
         .when("/departments", {
             templateUrl : "templates/manage-departments.html",
             controller : "departmentsController"
+        })
+		.when('/departments/:id/edit', {
+			templateUrl:'templates/edit-department.html',
+			controller:"departmentsController"
         });
     });
 </script>
