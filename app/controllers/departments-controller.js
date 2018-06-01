@@ -1,4 +1,4 @@
-function departmentsController($scope,$http,$location,$route,$routeParams){
+function departmentsController($scope,$http,$location,$route,$routeParams, toastr){
 
 	$scope.getDepartments = function(){
 		$http.get('/api/departments/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
@@ -8,7 +8,8 @@ function departmentsController($scope,$http,$location,$route,$routeParams){
 
 	$scope.addDepartment = function(){
         $http.post('/api/departments/', $scope.department, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-          $location.path('/departments');
+		  $location.path('/departments');
+		  toastr.success('You have successfully added a new department!', 'Success');
         });
 			}
 			
@@ -16,6 +17,7 @@ function departmentsController($scope,$http,$location,$route,$routeParams){
 		var id = id;
 		$http.delete('/api/departments/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$route.reload();
+			toastr.success('You have successfully removed selected department!', 'Success');
 		});
 	}
 
