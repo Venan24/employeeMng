@@ -297,6 +297,15 @@ apiRoutes.get('/users', function(req, res){
   })
 });
 
+//Get user by id
+apiRoutes.get('/users/:id', function(req, res){
+	User.findOne({_id:req.params.id}, function(err, user){
+		if(err)
+			res.send(err);
+		res.json(user);
+	});
+});
+
 app.use('/api', apiRoutes);
 
 // ======================= \\

@@ -1,0 +1,22 @@
+<div class="card-content table-responsive" ng-init="showSysUser()">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header" data-background-color="blue">
+				<h4 class="title">Employee Details</h4>
+			</div>
+			<div class="card-content">
+				<form>
+					<div class="form-group">
+						<label class="form-control"><b>Username:</b> {{ user.username }}</label>
+						<label class="form-control"><b>Firstname:</b> {{ user.firstname }}</label>
+						<label class="form-control"><b>Lastname:</b> {{ user.lastname }}</label>
+						<label class="form-control" ng-if="user.admin"><b>User Role:</b> Admin</label>
+						<label class="form-control" ng-if="!user.admin"><b>User Role:</b> User</label>
+						<label class="form-control"><b>ID:</b> {{ user._id }}</label>
+						<a href="#!/dashboard" class="btn btn-danger"> Cancel</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
