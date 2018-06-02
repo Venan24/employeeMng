@@ -1,36 +1,42 @@
-<div class="panel panel-default" ng-init="showEmployee(); getDepartments();">
-	<div class="panel-heading">
-	  <p class="panel-title"><span style="color:#5bc0de;" 
-class="glyphicon glyphicon-edit"> </span> Edit Employee</p>
-	</div>
-	<div class="panel-body">
-		<form>
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" ng-model="employee.name" value="employee.name">
+<div class="card-content table-responsive" ng-init="showEmployee(); getDepartments(); getPositions();">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header" data-background-color="blue">
+        <h4 class="title">Edit Employee</h4>
+      </div>
+      <div class="card-content">
+        <form>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" ng-model="employee.name" value="employee.name">
+          </div>
+          <div class="form-group">
+            <label for="dept">Department:</label>
+            <select id="departmentSelector" ng-model="employee.dept">
+              <option ng-repeat="x in departments">{{x.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="area">Location:</label>
+            <input type="text" class="form-control" id="area" ng-model="employee.area" value="employee.area">
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact No. :</label>
+            <input type="text" class="form-control" id="contact" ng-model="employee.contact" value="employee.contact">
+                <div class="form-group">
+                  <label for="dept">Job Status:</label>
+                  <select id="departmentSelector" ng-model="employee.status" required>
+                    <option ng-repeat="x in positions">{{x.name}}</option>
+                  </select>
+                </div>
+              <div class="form-group">
+                <label for="salary">Salary :</label>
+                <input type="text" class="form-control" id="salary" ng-model="employee.salary" value="employee.salary">
+              </div>
+              <button type="submit" class="btn btn-success" ng-click="updateEmployee()">Update</button>
+              <a href="#!/dashboard" class="btn btn-danger"> Cancel</a>
+        </form>
+        </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="dept">Department:</label>
-   ,   <select id="departmentSelector" ng-model="employee.dept">
-        <option ng-repeat="x in departments">{{x.name}}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="area">Location:</label>
-      <input type="text" class="form-control" id="area" ng-model="employee.area" value="employee.area">
-    </div>
-    <div class="form-group">
-      <label for="contact">Contact No. :</label>
-      <input type="text" class="form-control" id="contact" ng-model="employee.contact" value="employee.contact">
-      <div class="form-group">
-      <label for="status">Job Status :</label>
-      <input type="text" class="form-control" id="status" ng-model="employee.status" value="employee.status">
-      <div class="form-group">
-      <label for="salary">Salary :</label>
-      <input type="text" class="form-control" id="salary" ng-model="employee.salary" value="employee.salary">
-    </div>
-    <button type="submit" class="btn btn-success" ng-click="updateEmployee(); showEmployee();">Update</button>
-    <a href="#!/dashboard" class="btn btn-danger"> Cancel</a>
-</form>		
-    <div>
-<div>
