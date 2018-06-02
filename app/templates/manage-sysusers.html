@@ -21,10 +21,10 @@
 						<td ng-if="user.admin">Admin</td>
 						<td ng-if="!user.admin">User</td>
 						<td>
-							<a href="#!/employees/{{employee._id}}/show" class="btn btn-info "> Show </a>
-							<a href="#!/employees/{{employee._id}}/edit" class="btn btn-success">
+							<a href="#!/users/{{user._id}}/show" class="btn btn-info "> Show </a>
+							<a href="#!/users/{{user._id}}/edit" class="btn btn-success">
 								<span class="glyphicon glyphicon-edit"> </span> Edit </a>
-							<a ng-click="deleteEmployee(employee._id)" class="btn btn-danger">
+							<a ng-click="deleteUser(user._id)" class="btn btn-danger">
 								<span class="glyphicon glyphicon-trash"> </span> Delete </a>
 						</td>
 					</tr>
