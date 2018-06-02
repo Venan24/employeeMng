@@ -5,15 +5,22 @@
               <h4 class="title">Add New System User</h4>
           </div>
           <div class="card-content">
-            <form ng-submit="addUser(user)">
+            <form name="userForm" ng-submit="addUser(user)">
               <div class="form-group">
                 <label for="name">Username:</label>
                 <input type="text" class="form-control" id="name" ng-model="user.username" required>
               </div>
               <div class="form-group">
                 <label for="name">Password:</label>
-                <input type="password" class="form-control" id="name" ng-model="user.password" required>
+                <input name="password" type="password" class="form-control" ng-model="user.password" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+                <span ng-show="!userForm.password.$error.required &&  userForm.password.$error.pattern && userForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
               </div>
+              <div class="form-group">
+                <label for="name">Confirm password:</label>
+                <input name="confirm_password" type="password" class="form-control" ng-model="user.confirmPassword" ng-pattern="user.password" required />
+                <span ng-show="user.password != user.confirmPassword">Your passwords must match.</span>
+              </div>
+
               <div class="form-group">
                 <label for="name">First name:</label>
                 <input type="text" class="form-control" id="name" ng-model="user.fname" required>
@@ -25,11 +32,13 @@
               <div class="form-group">
                 <label for="dept">User Role:</label>
                 <select ng-model="user.role">
-                  <option value="Admin">Admin
-                  <option value="User">User
+                  <option value="" selected disabled hidden>Choose here</option>
+                  <option value="Admin">Admin</option>
+                  <option value="User" selected>User</option>
               </select>
+              
               </div>
-              <button type="submit" class="btn btn-success">Save</button>
+              <button type="submit" ng-disabled="user.password != user.confirmPassword" class="btn btn-success">Save</button>
               <a href="#!/employees" class="btn btn-danger"> Cancel</a>
           </form>
           </div>
