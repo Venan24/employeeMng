@@ -1,8 +1,8 @@
 function sysuserController($scope,$http){
     $scope.addUser = function(user){
         $http.post('/api/users', user, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-          //$scope.employee = response.data;
           window.location.href = '/';
+          toastr.success('You have successfully added new user!', 'Successfully Added');
         });
       }
       $scope.getDepartments = function(){
