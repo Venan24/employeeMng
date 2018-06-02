@@ -181,7 +181,7 @@ apiRoutes.get('/departments', function(req, res){
 
 //Create new department
 apiRoutes.post('/departments', function(req, res){
-	Departments.create( req.body, function(err, departments){
+	Departments.create(req.body, function(err, departments){
 		if(err)
 			res.send(err);
 		res.json(departments);
@@ -230,7 +230,7 @@ apiRoutes.get('/positions', function(req, res){
 
 //Create new positions
 apiRoutes.post('/positions', function(req, res){
-	Positions.create( req.body, function(err, positions){
+	Positions.create(req.body, function(err, positions){
 		if(err)
 			res.send(err);
 		res.json(positions);
@@ -271,9 +271,12 @@ apiRoutes.put('/positions/:id', function(req, res){
 //Create new user
 apiRoutes.post('/users', function(req, res){
 	var username = req.body.username;
-	var firstname = req.body.firstname;
-	var lastname = req.body.lastname;
+	var firstname = req.body.fname;
+	var lastname = req.body.lname;
 	var admin = false;
+	if(req.body.role == "Admin"){
+		admin = true;
+	}
 	
 	bcrypt.hash(req.body.password, 10, function(err, hash) {
 		var user = new User({username: username, password: hash, firstname: firstname, lastname: lastname, admin: admin});

@@ -39,6 +39,7 @@
 <script src="controllers/add-controller.js"></script>
 <script src="controllers/departments-controller.js"></script>
 <script src="controllers/positions-controller.js"></script>
+<script src="controllers/add-sysusercontroller.js"></script>
 
 <script>
     var myApp = angular.module("myApp", ["ngRoute", "xeditable", "ui.bootstrap", "ngAnimate", "toastr"]);
@@ -48,6 +49,7 @@
     myApp.controller('addController', addController);
     myApp.controller('departmentsController', departmentsController);
     myApp.controller('positionsController', positionsController);
+    myApp.controller('sysuserController', sysuserController);
 
     myApp.config(function($routeProvider) {
         $routeProvider
@@ -86,6 +88,10 @@
         .when("/positions", {
             templateUrl : "templates/manage-positions.html",
             controller : "positionsController"
+        })
+        .when("/users/create", {
+            templateUrl : "templates/add-sysuser.html",
+            controller : "sysuserController"
         })
         .when('/positions/:id/edit', {
 			templateUrl:'templates/edit-position.html',
