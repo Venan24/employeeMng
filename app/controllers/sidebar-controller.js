@@ -29,7 +29,7 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
     $scope.getClass = function (path) {
         if (path == '/dashboard' && $location.path() == '/') return 'active';
         return ($location.path() === path) ? 'active' : '';
-    },
+    }
 
     $scope.openNavigationDrawer = function(){
         if ($scope.mobileNavigationOpen == 'nav-open'){
