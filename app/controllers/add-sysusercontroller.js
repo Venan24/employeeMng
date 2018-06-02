@@ -16,4 +16,10 @@ function sysuserController($scope,$http,$location,toastr){
           $scope.positions = response.data;
         });
       }
+
+      $scope.getSysUsers = function(){
+        $http.get('/api/users/', {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+          $scope.users = response.data;
+        });
+      }
 }

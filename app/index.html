@@ -89,6 +89,10 @@
             templateUrl : "templates/manage-positions.html",
             controller : "positionsController"
         })
+        .when("/users", {
+            templateUrl : "templates/manage-sysusers.html",
+            controller : "sysuserController"
+        })
         .when("/users/create", {
             templateUrl : "templates/add-sysuser.html",
             controller : "sysuserController"

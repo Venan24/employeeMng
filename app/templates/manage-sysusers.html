@@ -1,0 +1,35 @@
+<div class="col-md-12" ng-init="getSysUsers()">
+	<div class="card">
+		<div class="card-header" data-background-color="purple">
+			<h4 class="title">System Users</h4>
+			<p class="category">Here is a employee list</p>
+		</div>
+		<div class="card-content table-responsive">
+			<table class="table">
+				<thead class="text-primary">
+					<th>Username</th>
+					<th>Firstname</th>
+					<th>Lastname</th>
+					<th>User Role</th>
+					<th>Actions</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="user in users">
+						<td class="text-primary">{{ user.username }}</td>
+						<td>{{ user.firstname }}</td>
+						<td>{{ user.lastname }}</td>
+						<td ng-if="user.admin">Admin</td>
+						<td ng-if="!user.admin">User</td>
+						<td>
+							<a href="#!/employees/{{employee._id}}/show" class="btn btn-info "> Show </a>
+							<a href="#!/employees/{{employee._id}}/edit" class="btn btn-success">
+								<span class="glyphicon glyphicon-edit"> </span> Edit </a>
+							<a ng-click="deleteEmployee(employee._id)" class="btn btn-danger">
+								<span class="glyphicon glyphicon-trash"> </span> Delete </a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

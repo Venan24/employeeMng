@@ -288,7 +288,7 @@ apiRoutes.post('/users', function(req, res){
 	});
 });
 
-//Get all users Just4TEsting
+//Get all users
 apiRoutes.get('/users', function(req, res){
   User.find(function(err, users){
     if(err)
