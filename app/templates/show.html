@@ -1,19 +1,23 @@
-<div class="panel panel-default" ng-init="showEmployee()">
-	<div class="panel-heading">
-	  <p class="panel-title"> Employee Details</p>
-	</div>
-	<div class="panel-body">
-		<form>
-		<div class="form-group">
-		 <label class="form-control">Name: {{ employee.name }}</label>
-		 <label class="form-control">Department: {{ employee.dept }}</label>
-		 <label class="form-control">Location: {{ employee.area }}</label>
-		 <label class="form-control">Job Status: {{ employee.status }}</label>
-		 <label class="form-control">Contact: {{ employee.contact }}</label>
-		 <label class="form-control">Salary: {{ employee.salary }}</label>
-		 <label class="form-control">ID: {{ employee._id }}</label>
-		<a href="#!/dashboard" class="btn btn-danger"> Cancel</a>
+<div class="card-content table-responsive" ng-init="showEmployee()">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header" data-background-color="blue">
+				<h4 class="title">Employee Details</h4>
+			</div>
+			<div class="card-content">
+				<form>
+					<div class="form-group">
+						<label class="form-control"><b>Name:</b> {{ employee.name }}</label>
+						<label class="form-control"><b>Department:</b> {{ employee.dept }}</label>
+						<label class="form-control"><b>Location:</b> {{ employee.area }}</label>
+						<label class="form-control"><b>Job Status:</b> {{ employee.status }}</label>
+						<label class="form-control"><b>Contact:</b> {{ employee.contact }}</label>
+						<label class="form-control"><b>Salary:</b> {{ employee.salary }}</label>
+						<label class="form-control"><b>ID:</b> {{ employee._id }}</label>
+						<a href="#!/dashboard" class="btn btn-danger"> Cancel</a>
+					</div>
+				</form>
+			</div>
 		</div>
-	</form>		
-    <div>
-<div>
+	</div>
+</div>
