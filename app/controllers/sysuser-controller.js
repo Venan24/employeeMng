@@ -20,7 +20,7 @@ function sysuserController($scope,$http,$location,$routeParams,$route,toastr){
       }
 
       $scope.deleteUser = function(id){
-        if(localStorage.getItem('admin') == 'false'){
+        if(localStorage.getItem('admin') == 'true'){
         var id = id;
         $http.delete('/api/users/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
           $route.reload();

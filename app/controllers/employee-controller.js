@@ -6,7 +6,7 @@ function employeeController($scope, $route, $routeParams, $http, $location, toas
   }
 
   $scope.deleteEmployee = function(id){
-    if(localStorage.getItem('admin') == 'false'){
+    if(localStorage.getItem('admin') == 'true'){
     var id = id;
     $http.delete('/api/employees/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
       $route.reload();
