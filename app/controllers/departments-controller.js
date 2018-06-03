@@ -14,7 +14,7 @@ function departmentsController($scope,$http,$location,$route,$routeParams, toast
 			}
 			
 	$scope.deleteDepartemnt = function(id){
-		if($scope.JaSamAdmin == 'false'){
+		if(localStorage.getItem('admin') == 'false'){
 		var id = id;
 		$http.delete('/api/departments/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$route.reload();

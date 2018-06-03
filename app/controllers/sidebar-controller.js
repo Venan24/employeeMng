@@ -11,7 +11,7 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
         $http.post('/api/authenticate', credentials).then(function(response){
             if (typeof response.data.token != 'undefined'){
                 localStorage.setItem('user',response.data.token);
-                $scope.JaSamAdmin = response.data.admin;
+                localStorage.setItem('admin',response.data.admin);
                 toastr.success('You have successfully logged in!', 'Welcome');
             }else if(response.data.user == false){
                 toastr.error('No User Found', 'Login Error');
@@ -25,7 +25,6 @@ myApp.controller('sidebarCtrl', function($scope, $location, $http, toastr){
 
     $scope.logout = function(){
         localStorage.clear();
-        $scope.JaSamAdmin = '';
     }
 
     $scope.getClass = function (path) {

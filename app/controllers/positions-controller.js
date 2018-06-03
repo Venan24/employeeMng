@@ -14,7 +14,7 @@ function positionsController($scope,$http,$location,$route,$routeParams,toastr){
 	}
 
 	$scope.deletePosition = function(id){
-		if($scope.JaSamAdmin == 'false'){
+		if(localStorage.getItem('admin') == 'false'){
 		var id = id;
 		$http.delete('/api/positions/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$route.reload();
