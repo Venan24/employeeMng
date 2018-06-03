@@ -315,6 +315,26 @@ apiRoutes.delete('/users/:id', function(req, res){
 	});
 });
 
+//Update selected user
+apiRoutes.put('/users/:id', function(req, res){
+	var admin = false;
+	if(req.body.role == "Admin"){
+		admin = true;
+	}
+	var query = {
+		username:req.body.username,
+		firstname:req.body.firstname,
+		lastname:req.body.lastname,
+		admin:admin
+	};
+
+	User.findOneAndUpdate({_id:req.params.id}, query, function(err, user){
+		if(err)
+			res.send(err);
+		res.json(user);
+	});
+});
+
 app.use('/api', apiRoutes);
 
 // ======================= \\

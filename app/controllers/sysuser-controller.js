@@ -26,4 +26,12 @@ function sysuserController($scope,$http,$location,$routeParams,$route,toastr){
           toastr.success('You have successfully removed selected user!', 'Success');
         });
       }
+
+      $scope.updateUser = function(){
+        var id = $routeParams.id;
+        $http.put('/api/users/'+ id , $scope.user, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+          $location.path('/');
+              toastr.success('You have successfully updated user in!', 'Updated');
+        });
+      };
 }
