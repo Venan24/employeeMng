@@ -34,19 +34,15 @@
 <script src="assets/js/xeditable.min.js"></script>
 <script src="assets/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
 
-<script src="controllers/dashboard-controller.js"></script>
-<script src="controllers/edit-controller.js"></script>
-<script src="controllers/add-controller.js"></script>
 <script src="controllers/departments-controller.js"></script>
 <script src="controllers/positions-controller.js"></script>
 <script src="controllers/sysuser-controller.js"></script>
+<script src="controllers/employee-controller.js"></script>
 
 <script>
     var myApp = angular.module("myApp", ["ngRoute", "xeditable", "ui.bootstrap", "ngAnimate", "toastr"]);
 
-    myApp.controller('dashboardController', DashboardController);
-    myApp.controller('editController', editController);
-    myApp.controller('addController', addController);
+    myApp.controller('employeeController', employeeController);
     myApp.controller('departmentsController', departmentsController);
     myApp.controller('positionsController', positionsController);
     myApp.controller('sysuserController', sysuserController);
@@ -55,27 +51,27 @@
         $routeProvider
         .when("/", {
             templateUrl : "templates/list.html",
-            controller : "dashboardController"
+            controller : "employeeController"
         })
         .when("/dashboard", {
             templateUrl : "templates/list.html",
-            controller : "dashboardController"
+            controller : "employeeController"
         })
         .when("/employees", {
             templateUrl : "templates/list.html",
-            controller : "dashboardController"
+            controller : "employeeController"
         })
 		.when("/employees/:id/edit", {
 			templateUrl:"templates/edit.html",
-			controller:"editController"
+			controller:"employeeController"
         })
 		.when("/employees/:id/show", {
 			templateUrl:"templates/show.html",
-			controller:"editController"
+			controller:"employeeController"
         })
 		.when('/employees/create', {
 			templateUrl:'templates/add.html',
-			controller:"addController"
+			controller:"employeeController"
         })
         .when("/departments", {
             templateUrl : "templates/manage-departments.html",
