@@ -20,11 +20,14 @@ function sysuserController($scope,$http,$location,$routeParams,$route,toastr){
       }
 
       $scope.deleteUser = function(id){
+        if($scope.JaSamAdmin == 'false'){
         var id = id;
         $http.delete('/api/users/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
           $route.reload();
           toastr.success('You have successfully removed selected user!', 'Success');
-        });
+        })}else{
+          toastr.error('You do not have permission to delete!', 'PERMISSION');
+        }
       }
 
       $scope.updateUser = function(){

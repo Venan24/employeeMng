@@ -6,11 +6,14 @@ function employeeController($scope, $route, $routeParams, $http, $location, toas
   }
 
   $scope.deleteEmployee = function(id){
+    if($scope.JaSamAdmin == 'false'){
     var id = id;
     $http.delete('/api/employees/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
       $route.reload();
       toastr.success('You have successfully removed selected employee!', 'Removed');
-    });
+    })}else{
+      toastr.error('You do not have permission to delete!', 'PERMISSION');
+    }
   }
 
 	$scope.getDepartments = function(){

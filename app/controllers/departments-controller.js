@@ -14,11 +14,14 @@ function departmentsController($scope,$http,$location,$route,$routeParams, toast
 			}
 			
 	$scope.deleteDepartemnt = function(id){
+		if($scope.JaSamAdmin == 'false'){
 		var id = id;
 		$http.delete('/api/departments/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$route.reload();
 			toastr.success('You have successfully removed selected department!', 'Success');
-		});
+		})}else{
+			toastr.error('You do not have permission to delete!', 'PERMISSION');
+		}
 	}
 
 	$scope.showSelectedDepartment = function(){

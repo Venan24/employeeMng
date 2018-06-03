@@ -14,11 +14,14 @@ function positionsController($scope,$http,$location,$route,$routeParams,toastr){
 	}
 
 	$scope.deletePosition = function(id){
+		if($scope.JaSamAdmin == 'false'){
 		var id = id;
 		$http.delete('/api/positions/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
 			$route.reload();
 			toastr.success('You have successfully removed selected position!', 'Success');
-		});
+		})}else{
+			toastr.error('You do not have permission to delete!', 'PERMISSION');
+		}
 	}
 
 	$scope.showSelectedPosition = function(){

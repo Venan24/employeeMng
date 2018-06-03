@@ -58,8 +58,9 @@ apiRoutes.post('/authenticate', function(req, res){
 				});
 				res.setHeader("x-access-token", token);
 				res.send({
-								success: true,
-          			message: 'Successfully Logged in!',
+					success: true,
+					message: 'Successfully Logged in!',
+					admin:payload.admin,
           			token: token
 				});
 			}else{
