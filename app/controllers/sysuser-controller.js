@@ -1,4 +1,4 @@
-function sysuserController($scope,$http,$location,$routeParams,toastr){
+function sysuserController($scope,$http,$location,$routeParams,$route,toastr){
     $scope.addUser = function(user){
         $http.post('/api/users', user, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
           $location.path('/users');
@@ -16,6 +16,14 @@ function sysuserController($scope,$http,$location,$routeParams,toastr){
         var id = $routeParams.id;
         $http.get('/api/users/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
           $scope.user = response.data;
+        });
+      }
+
+      $scope.deleteUser = function(id){
+        var id = id;
+        $http.delete('/api/users/'+ id, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
+          $route.reload();
+          toastr.success('You have successfully removed selected user!', 'Success');
         });
       }
 }

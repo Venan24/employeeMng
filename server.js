@@ -306,6 +306,15 @@ apiRoutes.get('/users/:id', function(req, res){
 	});
 });
 
+//Remove selected user
+apiRoutes.delete('/users/:id', function(req, res){
+	User.findOneAndRemove({_id:req.params.id}, function(err, user){
+		if(err)
+			res.send(err);
+		res.json(user);
+	});
+});
+
 app.use('/api', apiRoutes);
 
 // ======================= \\
