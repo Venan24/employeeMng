@@ -39,7 +39,7 @@
 <script src="controllers/add-controller.js"></script>
 <script src="controllers/departments-controller.js"></script>
 <script src="controllers/positions-controller.js"></script>
-<script src="controllers/add-sysusercontroller.js"></script>
+<script src="controllers/sysuser-controller.js"></script>
 
 <script>
     var myApp = angular.module("myApp", ["ngRoute", "xeditable", "ui.bootstrap", "ngAnimate", "toastr"]);
@@ -89,6 +89,10 @@
             templateUrl : "templates/manage-positions.html",
             controller : "positionsController"
         })
+        .when('/positions/:id/edit', {
+			templateUrl:'templates/edit-position.html',
+			controller:"positionsController"
+        })
         .when("/users", {
             templateUrl : "templates/manage-sysusers.html",
             controller : "sysuserController"
@@ -101,9 +105,9 @@
             templateUrl : "templates/add-sysuser.html",
             controller : "sysuserController"
         })
-        .when('/positions/:id/edit', {
-			templateUrl:'templates/edit-position.html',
-			controller:"positionsController"
+        .when('/user/:id/edit', {
+			templateUrl:'templates/edit-user.html',
+			controller:"editUserController"
         });
     });
 </script>
