@@ -8,7 +8,8 @@ function positionsController($scope,$http,$location,$route,$routeParams,toastr){
 
 	$scope.addPosition = function(){
         $http.post('/api/positions/', $scope.position, {headers: {'x-access-token': localStorage.getItem('user')}}).then(function(response){
-          $location.path('/positions');
+		  $location.path('/positions');
+		  toastr.success('You have successfully added new position!', 'Success');
         });
 	}
 
