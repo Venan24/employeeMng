@@ -3,7 +3,7 @@
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 ## Features
-* Login (bcrypt and JWT)
+* Login (Bcrypt Hashing and JWT Signing)
 * Employee Management (CRUD)
 * Departments Management (CRUD)
 * Positions Management (CRUD)
