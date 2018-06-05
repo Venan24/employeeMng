@@ -8,7 +8,7 @@
 * Departments Management (CRUD)
 * Positions Management (CRUD)
 * User Management (CRUD)
-* More options soon...
+* User/Admin Permission Restriction
 
 ## Technologies Used
 * MongoDB - [MongoDB Official Website](http://mongodb.org/) - Database
